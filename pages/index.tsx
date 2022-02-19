@@ -231,13 +231,11 @@ function Home() {
               use SSN
               </button>
               <a
-                download
                 href="/download/CandidNFT-ChromeExtension.zip"
-                alt="Chrome Extension Download for CandidNFT"
                 target="_blank"
                 rel="noopener noreferrer"
               >Download Chrome Extension</a>
-            <p>To use the SSN option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to the US Social Security Administration's website.</p>
+            <p>To use the SSN option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to the US Social Security Administration website.</p>
             </div>
             <div className="poapcontainer m-4">
               <button onClick={getWalletInfo}
