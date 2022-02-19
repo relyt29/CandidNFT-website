@@ -192,12 +192,29 @@ function Home() {
 
 	const sgx_pk = 'BBarzLnfkPo3nLmRjT82ifMm8sbQpQSqavgD9omSAkorhxG+/8C7OqVKduXw2SZmBKYQYTNyqt6DwU4XSy6hkTw='
 
+
 function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
+  const logToScreen = function(msg: string) {
+    const outArea: any = document.getElementById('logTextArea');
+    let existing = outArea.value;
+    if(existing.length > 0)
+      existing += "\n";
+    existing += msg;
+    outArea.value = existing;
+  }
+
+
   const getWalletInfo = async function() {
-    const signr = library.getSigner();
+    let signr = undefined;
+    try {
+      signr = library.getSigner();
+    } catch (error) {
+      alert("Error during connecting to metamask, did you log in to metamask in the top left hand corner?");
+      return;
+    }
     const walletAddr = await signr.getAddress();
     const userAddr = walletAddr.toLowerCase();
     const message = `candidNFT:${userAddr}`;
@@ -205,27 +222,29 @@ function delay(time) {
     const formattedMessage = ethers.utils.hashMessage(message);
     const publicKey = ethers.utils.recoverPublicKey(formattedMessage, signedMessage);
     //const checkAddr = getAddress(hexDataSlice(ethers.utils.keccak256(hexDataSlice(publicKey, 1)), 12));
-    console.log(message);
-    console.log(`signedMessage: ${signedMessage}`);
-    console.log(`formatted message ${formattedMessage}`);
-    console.log(`public key ${publicKey}`);
-    //console.log(checkAddr);
-    console.log(userAddr);
+    logToScreen(message);
+    logToScreen(`signedMessage: ${signedMessage}`);
+    logToScreen(`formatted message ${formattedMessage}`);
+    logToScreen(`public key ${publicKey}`);
+    //logToScreen(checkAddr);
+    logToScreen(userAddr);
     //const concatArray = userAddr + "\x14" + publicKey + signedMessage;
-    //console.log(`ConcatArray ${concatArray}`);
+    //logToScreen(`ConcatArray ${concatArray}`);
     const encodedMessage = new Uint8Array([...hexStringToByte(removePrefix(userAddr)), 14, ...hexStringToByte(removePrefix(publicKey)), ...hexStringToByte(removePrefix(signedMessage))]);
+
+    logToScreen(`Encoded Message ${JSON.stringify(encodedMessage)}`);
     console.log(`Encoded Message ${JSON.stringify(encodedMessage)}`);
    	encryptAndSendHttps(encodedMessage);
   }
 
   const notready = function () {
-    console.log("Not implemented yet");
+    logToScreen("Not implemented yet");
   }
 
   return (
     <div>
       <Head>
-        <title>next-web3-boilerplate</title>
+        <title>CandidNFT Drop Mechanics Demo</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -247,18 +266,51 @@ function delay(time) {
           <h1 className="text-8xl font-bold m-10">
             Enter the Raffle
           </h1>
-          <div className="">
-            <button onClick={notready}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-            >
-            use SSN
-            </button>
-            <button onClick={getWalletInfo}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-            >
-            use PoAP
-            </button>
+          <div className="buttoncontainer">
+            <div className="ssncontainer m-4">
+              <button onClick={notready}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
+              >
+              use SSN
+              </button>
+              <a
+                href="/download/CandidNFT-ChromeExtension.zip"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Download Chrome Extension</a>
+            <p>To use the SSN option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to the US Social Security Administration website.</p>
+            </div>
+            <div className="poapcontainer m-4">
+              <button onClick={getWalletInfo}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-1"
+              >
+              use PoAP
+              </button>
+              <p>To use the PoAP option to register for the raffle, you must have a wallet holding one of the eligble PoAPs from our list, and connect with Metamask on the top right side of this web page.</p>
+            </div>
           </div>
+        </div>
+        <div className="textareacontainer m-8 object-fill">
+          <textarea readOnly className="
+              form-control
+              block
+              w-full
+              px-3
+              py-1.5
+              text-base
+              font-mono
+              text-lime-500
+              bg-black bg-clip-padding
+              border border-solid border-gray-300
+              rounded
+              placeholder-lime-500
+              object-fill
+              h-96
+              m-0
+              focus:text-lime-500 focus:bg-black focus:border-blue-600 focus:outline-none"
+            id="logTextArea"
+            placeholder="Raffle enter log"
+          ></textarea>
         </div>
         <div className="br divide-y-4 mb-20"><br/></div>
         <div className="justify-center"><h1 className="font-bold text-4xl">Team</h1></div>
