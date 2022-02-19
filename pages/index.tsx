@@ -127,7 +127,7 @@ function Home() {
 	} /* end aesEnc() */
 
 
-	function encryptAndSend(msg) {
+	function encryptAndSendWs(msg) {
 		let ws = new WebSocket(addr);
 
 		ws.addEventListener('open', evt => {
@@ -160,6 +160,25 @@ function Home() {
 
 	}
 
+	function encryptAndSendHttps(msg) {
+  	let encrypted = aesEnc(sgx_pk, msg).then(encrypted => {
+    console.log(encrypted);
+    fetch(https_url, {
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      body: JSON.stringify(encrypted) // body data type must match "Content-Type" header
+    })
+      .then(response => {
+        response.text().then(text => {
+          console.log(text);
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      });
+  });
+}
+
+
 	function removePrefix(str) {
 		if (str.substring(0, 2) === "0x") {
 			return str.substring(2);
@@ -169,8 +188,13 @@ function Home() {
 	}
 
 	const addr = 'ws://20.106.154.181:9001'
+	const https_url = 'https://sgx.candid.id'
 
 	const sgx_pk = 'BBarzLnfkPo3nLmRjT82ifMm8sbQpQSqavgD9omSAkorhxG+/8C7OqVKduXw2SZmBKYQYTNyqt6DwU4XSy6hkTw='
+
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
 
   const getWalletInfo = async function() {
     const signr = library.getSigner();
@@ -191,7 +215,7 @@ function Home() {
     //console.log(`ConcatArray ${concatArray}`);
     const encodedMessage = new Uint8Array([...hexStringToByte(removePrefix(userAddr)), 14, ...hexStringToByte(removePrefix(publicKey)), ...hexStringToByte(removePrefix(signedMessage))]);
     console.log(`Encoded Message ${JSON.stringify(encodedMessage)}`);
-    encryptAndSend(encodedMessage);
+   	encryptAndSendHttps(encodedMessage);
   }
 
   const notready = function () {
