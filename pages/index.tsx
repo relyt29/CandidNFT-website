@@ -129,14 +129,16 @@ function Home() {
 
 	function encryptAndSend(msg) {
 		let ws = new WebSocket(addr);
-		ws.onopen = function(evt) {
+
+		ws.addEventListener('open', evt => {
+      console.log("connection opened");
 			const encrypted = aesEnc(sgx_pk, msg).then(encrypted => {
-				//console.log(encrypted);
+				console.log(`Sending ${encrypted}`);
 				ws.send(encrypted);
 			});
-		};
+		});
 
-		ws.onmessage = function(evt) {
+		ws.addEventListener('message', evt => {
 			console.log( "Received Message: " + evt.data);
 			const decoded = new Uint8Array(str2ab(atob(evt.data)))
 			let resp = decoded[0].toString() + ", ";
@@ -145,11 +147,16 @@ function Home() {
 
       console.log(resp);
 			ws.close();
-		};
+		});
 
-		ws.onclose = function(evt) {
+		ws.addEventListener('close', evt => {
 			console.log("Connection closed.");
-		};
+		});
+
+    ws.addEventListener('error', function (event) {
+      console.log('WebSocket error: ', event);
+    });
+
 	}
 
 	function removePrefix(str) {
@@ -198,7 +205,7 @@ function Home() {
 
       <header>
         <nav>
-          <Link href="/">
+          <Link href="/" passHref>
             <Image src="/images/logo.png"
               width="400"
               height="52"
@@ -246,7 +253,7 @@ function Home() {
           </div>
           <div className="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg m-10">
             <div className="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-              <img src="/images/tyler.jpg"
+              <Image src="/images/tyler.jpg"
                 width="290"
                 height="290"
                 alt=""
@@ -260,7 +267,7 @@ function Home() {
           </div>
           <div className="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg m-10">
             <div className="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-              <img src="/images/deepak.jpg"
+              <Image src="/images/deepak.jpg"
                 width="290"
                 height="290"
                 alt=""
@@ -274,7 +281,7 @@ function Home() {
           </div>
           <div className="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg m-10">
             <div className="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
-              <img src="/images/ari.png"
+              <Image src="/images/ari.png"
                 width="290"
                 height="290"
                 alt=""
@@ -289,7 +296,7 @@ function Home() {
 
         </div>
         <div>
-          <Link href="https://www.initc3.org/">
+          <Link href="https://www.initc3.org/" passHref>
             <Image src="/images/ic3.png"
               width="350"
               height="60"
