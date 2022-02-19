@@ -223,17 +223,30 @@ function Home() {
           <h1 className="text-8xl font-bold m-10">
             Enter the Raffle
           </h1>
-          <div className="">
-            <button onClick={notready}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-            >
-            use SSN
-            </button>
-            <button onClick={getWalletInfo}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-            >
-            use PoAP
-            </button>
+          <div className="buttoncontainer">
+            <div className="ssncontainer m-4">
+              <button onClick={notready}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
+              >
+              use SSN
+              </button>
+              <a
+                download
+                href="/download/CandidNFT-ChromeExtension.zip"
+                alt="Chrome Extension Download for CandidNFT"
+                target="_blank"
+                rel="noopener noreferrer"
+              >Download Chrome Extension</a>
+            <p>To use the SSN option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to the US Social Security Administration's website.</p>
+            </div>
+            <div className="poapcontainer m-4">
+              <button onClick={getWalletInfo}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-1"
+              >
+              use PoAP
+              </button>
+              <p>To use the PoAP option to register for the raffle, you must have a wallet holding one of the eligble PoAPs from our list, and connect with Metamask on the top right side of this web page.</p>
+            </div>
           </div>
         </div>
         <div className="br divide-y-4 mb-20"><br/></div>
