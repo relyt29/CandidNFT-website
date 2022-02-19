@@ -140,10 +140,11 @@ function Home() {
 
 		ws.addEventListener('message', evt => {
 			console.log( "Received Message: " + evt.data);
-			const decoded = new Uint8Array(str2ab(atob(evt.data)))
-			let resp = decoded[0].toString() + ", ";
-			resp = resp + "0x" + byteToHexString(decoded.slice(1, 33)) + ", ";
-			resp = resp + "0x" + byteToHexString(decoded.slice(33, 65));
+			let resp = evt.data;
+			//const decoded = new Uint8Array(str2ab(atob(evt.data)))
+			//let resp = decoded[0].toString() + ", ";
+			//resp = resp + "0x" + byteToHexString(decoded.slice(1, 33)) + ", ";
+			//resp = resp + "0x" + byteToHexString(decoded.slice(33, 65));
 
       console.log(resp);
 			ws.close();
@@ -173,7 +174,8 @@ function Home() {
 
   const getWalletInfo = async function() {
     const signr = library.getSigner();
-    const userAddr = await signr.getAddress();
+    const walletAddr = await signr.getAddress();
+    const userAddr = walletAddr.toLowerCase();
     const message = `candidNFT:${userAddr}`;
     const signedMessage = await signr.signMessage(message);
     const formattedMessage = ethers.utils.hashMessage(message);
@@ -185,9 +187,9 @@ function Home() {
     console.log(`public key ${publicKey}`);
     //console.log(checkAddr);
     console.log(userAddr);
-    const concatArray = userAddr + "\x14" + publicKey + signedMessage;
-    console.log(`ConcatArray ${concatArray}`);
-    const encodedMessage = new Uint8Array(str2ab(concatArray));
+    //const concatArray = userAddr + "\x14" + publicKey + signedMessage;
+    //console.log(`ConcatArray ${concatArray}`);
+    const encodedMessage = new Uint8Array([...hexStringToByte(removePrefix(userAddr)), 14, ...hexStringToByte(removePrefix(publicKey)), ...hexStringToByte(removePrefix(signedMessage))]);
     console.log(`Encoded Message ${JSON.stringify(encodedMessage)}`);
     encryptAndSend(encodedMessage);
   }
