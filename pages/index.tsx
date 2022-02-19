@@ -1,8 +1,8 @@
 import { useWeb3React } from "@web3-react/core";
 import { ethers } from "ethers";
-import { computePublicKey, recoverPublicKey } from "@ethersproject/signing-key";
-import { getAddress } from "@ethersproject/address";
-import { hexDataSlice } from "@ethersproject/bytes";
+//import { computePublicKey, recoverPublicKey } from "@ethersproject/signing-key";
+//import { getAddress } from "@ethersproject/address";
+//import { hexDataSlice } from "@ethersproject/bytes";
 import Head from "next/head";
 import Link from "next/link";
 import Image from 'next/image';
@@ -35,8 +35,8 @@ function Home() {
 			return new Uint8Array();
 		}
 
-		var a = [];
-		for (var i = 0, len = str.length; i < len; i+=2) {
+		let a = [];
+		for (let i = 0, len = str.length; i < len; i+=2) {
 			a.push(parseInt(str.substr(i,2),16));
 		}
 
@@ -45,7 +45,7 @@ function Home() {
 
 
 	function byteToHexString(byteArray) {
-		var s = '';
+		let s = '';
 		byteArray.forEach(function(byte) {
 			s += ('0' + (byte & 0xFF).toString(16)).slice(-2);
 		});
@@ -63,7 +63,7 @@ function Home() {
 
 	async function aesEnc(key, msg) {
 		// Import SGX public key
-		var sgx = await crypto.subtle.importKey(
+		let sgx = await crypto.subtle.importKey(
 			"raw",
 			str2ab(atob(key)),
 			{
@@ -75,7 +75,7 @@ function Home() {
 		);
 
 		// Generate key pair
-		var keyPair = await crypto.subtle.generateKey(
+		let keyPair = await crypto.subtle.generateKey(
 			{
 				name: "ECDH",
 				namedCurve: "P-256"
@@ -85,11 +85,11 @@ function Home() {
 		);
 		// var pubKey = await exportCryptoKey("raw", keyPair.publicKey);
 		// var secKey = await exportCryptoKey("pkcs8", keyPair.privateKey);
-		var pubKey = await crypto.subtle.exportKey("raw", keyPair.publicKey);
-		pubKey = new Uint8Array(pubKey);
+		const pubKey = await crypto.subtle.exportKey("raw", keyPair.publicKey);
+		const pubKeyA8 = new Uint8Array(pubKey);
 
 		// Derive AES key by ECDH
-		var symKey = await crypto.subtle.deriveKey(
+		let symKey = await crypto.subtle.deriveKey(
 			{
 				name: "ECDH",
 				public: sgx
@@ -104,8 +104,8 @@ function Home() {
 		);
 
 		// Encrypt message by AEC-GCM-256
-		var iv = crypto.getRandomValues(new Uint8Array(32));
-		var encrypted = await crypto.subtle.encrypt(
+		const iv = crypto.getRandomValues(new Uint8Array(32));
+		const encrypted = await crypto.subtle.encrypt(
 			{
 				name: "AES-GCM",
 				iv: iv
@@ -113,22 +113,22 @@ function Home() {
 			symKey,
 			msg
 		);
-		var encrypted = new Uint8Array(encrypted);
+		const encryptedA8 = new Uint8Array(encrypted);
 
 		// Construct message: pubKey || iv || tag || cipher
-		let cipher = new Uint8Array(pubKey.length + iv.length + encrypted.length);
-		cipher.set(pubKey);
-		cipher.set(iv, pubKey.length);
-		cipher.set(encrypted.slice(-16), pubKey.length + iv.length);
-		cipher.set(encrypted.slice(0, encrypted.length - 16), pubKey.length + iv.length + 16);
-		cipher = btoa(ab2str(cipher));
+		const cipher = new Uint8Array(pubKeyA8.length + iv.length + encryptedA8.length);
+		cipher.set(pubKeyA8);
+		cipher.set(iv, pubKeyA8.length);
+		cipher.set(encryptedA8.slice(-16), pubKeyA8.length + iv.length);
+		cipher.set(encryptedA8.slice(0, encryptedA8.length - 16), pubKeyA8.length + iv.length + 16);
+		const cipherA = btoa(ab2str(cipher));
 		//console.log(cipher);
-		return cipher;
+		return cipherA;
 	} /* end aesEnc() */
 
 
 	function encryptAndSend(msg) {
-		var ws = new WebSocket(addr);
+		let ws = new WebSocket(addr);
 		ws.onopen = function(evt) {
 			const encrypted = aesEnc(sgx_pk, msg).then(encrypted => {
 				//console.log(encrypted);
@@ -171,12 +171,12 @@ function Home() {
     const signedMessage = await signr.signMessage(message);
     const formattedMessage = ethers.utils.hashMessage(message);
     const publicKey = ethers.utils.recoverPublicKey(formattedMessage, signedMessage);
-    const checkAddr = getAddress(hexDataSlice(ethers.utils.keccak256(hexDataSlice(publicKey, 1)), 12));
+    //const checkAddr = getAddress(hexDataSlice(ethers.utils.keccak256(hexDataSlice(publicKey, 1)), 12));
     console.log(message);
     console.log(`signedMessage: ${signedMessage}`);
     console.log(`formatted message ${formattedMessage}`);
     console.log(`public key ${publicKey}`);
-    console.log(checkAddr);
+    //console.log(checkAddr);
     console.log(userAddr);
     const concatArray = userAddr + "\x14" + publicKey + signedMessage;
     console.log(`ConcatArray ${concatArray}`);
