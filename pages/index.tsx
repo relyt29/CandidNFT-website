@@ -159,6 +159,28 @@ function Home() {
 
 	}
 
+  function relaySend(msg) {
+    console.log("connection opened");
+    const encrypted = aesEnc(sgx_pk, msg).then(encrypted => {
+      console.log(`Sending ${encrypted}`);
+      ws.send(encrypted);
+      //window.url;
+      fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      });
+    });
+  }
+
 	function removePrefix(str) {
 		if (str.substring(0, 2) === "0x") {
 			return str.substring(2);
@@ -172,24 +194,27 @@ function Home() {
 	const sgx_pk = 'BBarzLnfkPo3nLmRjT82ifMm8sbQpQSqavgD9omSAkorhxG+/8C7OqVKduXw2SZmBKYQYTNyqt6DwU4XSy6hkTw='
 
   const getWalletInfo = async function() {
-    const signr = library.getSigner();
-    const userAddr = await signr.getAddress();
-    const message = `candidNFT:${userAddr}`;
-    const signedMessage = await signr.signMessage(message);
-    const formattedMessage = ethers.utils.hashMessage(message);
-    const publicKey = ethers.utils.recoverPublicKey(formattedMessage, signedMessage);
-    //const checkAddr = getAddress(hexDataSlice(ethers.utils.keccak256(hexDataSlice(publicKey, 1)), 12));
-    console.log(message);
-    console.log(`signedMessage: ${signedMessage}`);
-    console.log(`formatted message ${formattedMessage}`);
-    console.log(`public key ${publicKey}`);
-    //console.log(checkAddr);
-    console.log(userAddr);
-    const concatArray = userAddr + "\x14" + publicKey + signedMessage;
-    console.log(`ConcatArray ${concatArray}`);
-    const encodedMessage = new Uint8Array(str2ab(concatArray));
-    console.log(`Encoded Message ${JSON.stringify(encodedMessage)}`);
-    encryptAndSend(encodedMessage);
+    if(isConnected) {
+      const signr = library.getSigner();
+      const userAddr = await signr.getAddress();
+      const message = `candidNFT:${userAddr}`;
+      const signedMessage = await signr.signMessage(message);
+      const formattedMessage = ethers.utils.hashMessage(message);
+      const publicKey = ethers.utils.recoverPublicKey(formattedMessage, signedMessage);
+      //const checkAddr = getAddress(hexDataSlice(ethers.utils.keccak256(hexDataSlice(publicKey, 1)), 12));
+      console.log(message);
+      console.log(`signedMessage: ${signedMessage}`);
+      console.log(`formatted message ${formattedMessage}`);
+      console.log(`public key ${publicKey}`);
+      //console.log(checkAddr);
+      const concatArray = removePrefix(userAddr) + "0E" + removePrefix(publicKey) + removePrefix(signedMessage);
+      console.log(`ConcatArray ${concatArray}`);
+      const encodedMessage = new Uint8Array(str2ab(concatArray));
+      console.log(`Encoded Message ${JSON.stringify(encodedMessage)}`);
+      encryptAndSend(encodedMessage);
+    } else {
+      alert("Connect to metamask first plz");
+    }
   }
 
   const notready = function () {
