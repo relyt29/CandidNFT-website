@@ -1,0 +1,4 @@
+[submodule "Town-Crier"]
+	path = Town-Crier
+	url = https://github.com/iseriohn/Town-Crier.git
+	branch = ETHDenver-nodocker
