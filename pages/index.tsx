@@ -170,6 +170,7 @@ function Home() {
       .then(response => {
         response.text().then(text => {
           console.log(text);
+    			logToScreen(`Request for Identity NFT sent!\nResponse message: ${JSON.stringify(text)}`);
         });
       })
       .catch(err => {
