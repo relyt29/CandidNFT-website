@@ -273,6 +273,9 @@ function delay(time) {
           <h1 className="text-8xl font-bold m-10">
             Enter the Raffle
           </h1>
+          <h3 className="text-4xl font-bold m-10">
+            To win an NFT art piece by <a href="http://zach.li/" className="text-blue-500">Zach Lieberman</a>
+          </h3>
           <div>
               <a
                 href="/download/CandidNFT-ChromeExtension.zip"
@@ -375,6 +378,25 @@ function delay(time) {
           </div>
           <div className="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg m-10">
             <div className="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
+              <Image src="/images/kushal.png"
+                width="290"
+                height="290"
+                alt=""
+                className="h-full w-full"/>
+            </div>
+            <h2 className="mt-4 font-bold text-xl">Kushal Babel</h2>
+            <h6 className="mt-2 text-sm font-medium">PhD Student</h6>
+            <p className="text-xs text-gray-500 text-center mt-3">
+            Kushal is a third year PhD student at Cornell University.
+            </p>
+          </div>
+        </div>
+        <div className="justify-center"><h1 className="font-bold text-4xl">Advised By</h1></div>
+        <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div></div>
+        <div></div>
+          <div className="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg m-10">
+            <div className="inline-flex shadow-lg border border-gray-200 rounded-full overflow-hidden h-40 w-40">
               <Image src="/images/ari.png"
                 width="290"
                 height="290"
@@ -387,7 +409,6 @@ function delay(time) {
               Ari Juels is the Weill Family Foundation and Joan and Sanford I. Weill Professor in the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion and a Computer Science faculty member at Cornell University. He is a Co-Director of the Initiative for CryptoCurrencies and Contracts (IC3). He is also Chief Scientist at Chainlink.
             </p>
           </div>
-
         </div>
         <div>
           <Link href="https://www.initc3.org/" passHref>
