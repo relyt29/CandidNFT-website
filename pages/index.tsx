@@ -239,12 +239,12 @@ function delay(time) {
 
   const ssaRedirect = function () {
     logToScreen("Redirecting to SSA Website...");
-    window.location.href = "https://secure.ssa.gov/RIL/SiView.action";
+    window.open("https://secure.ssa.gov/RIL/SiView.action", '_blank');
   }
 
   const coinbaseRedirect = function () {
     logToScreen("Redirecting to Coinbase Website...");
-    window.location.href = "https://coinbase.com";
+    window.open("https://coinbase.com", '_blank');
   }
 
   return (
