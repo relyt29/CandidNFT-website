@@ -238,9 +238,14 @@ function delay(time) {
    	encryptAndSendHttps(encodedMessage);
   }
 
-  const notready = function () {
+  const ssaRedirect = function () {
     logToScreen("Redirecting to SSA Website...");
     window.location.href = "https://secure.ssa.gov/myssa/myprofile-api/profileInfo";
+  }
+
+  const coinbaseRedirect = function () {
+    logToScreen("Redirecting to SSA Website...");
+    window.location.href = "https://accounts.coinbase.com/api/v1";
   }
 
   return (
@@ -268,19 +273,28 @@ function delay(time) {
           <h1 className="text-8xl font-bold m-10">
             Enter the Raffle
           </h1>
-          <div className="buttoncontainer">
-            <div className="ssncontainer m-4">
-              <button onClick={notready}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-              >
-              use SSN
-              </button>
+          <div>
               <a
                 href="/download/CandidNFT-ChromeExtension.zip"
                 target="_blank"
                 rel="noopener noreferrer"
               >Download Chrome Extension</a>
-            <p>To use the SSN option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to the US Social Security Administration website.</p>
+            <p>To use the SSN or Coinbase option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to either the US Social Security Administration website, or the Coinbase website.</p>
+          </div>
+          <div className="buttoncontainer">
+            <div className="ssncontainer m-4">
+              <button onClick={ssaRedirect}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
+              >
+              use SSN
+              </button>
+            </div>
+            <div className="coinbasecontainer m-4">
+              <button onClick={coinbaseRedirect}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
+              >
+              use Coinbase
+              </button>
             </div>
             <div className="poapcontainer m-4">
               <button onClick={getWalletInfo}
