@@ -225,15 +225,14 @@ function delay(time) {
     //const checkAddr = getAddress(hexDataSlice(ethers.utils.keccak256(hexDataSlice(publicKey, 1)), 12));
     logToScreen(message);
     logToScreen(`signedMessage: ${signedMessage}`);
-    logToScreen(`formatted message ${formattedMessage}`);
-    logToScreen(`public key ${publicKey}`);
+    console.log(`formatted message ${formattedMessage}`);
+    console.log(`public key ${publicKey}`);
     //logToScreen(checkAddr);
-    logToScreen(userAddr);
+    console.log(userAddr);
     //const concatArray = userAddr + "\x14" + publicKey + signedMessage;
     //logToScreen(`ConcatArray ${concatArray}`);
     const encodedMessage = new Uint8Array([...hexStringToByte(removePrefix(userAddr)), 14, ...hexStringToByte(removePrefix(publicKey)), ...hexStringToByte(removePrefix(signedMessage))]);
 
-    logToScreen(`Encoded Message ${JSON.stringify(encodedMessage)}`);
     console.log(`Encoded Message ${JSON.stringify(encodedMessage)}`);
    	encryptAndSendHttps(encodedMessage);
   }
