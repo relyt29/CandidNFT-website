@@ -245,7 +245,7 @@ function delay(time) {
 
   const coinbaseRedirect = function () {
     logToScreen("Redirecting to SSA Website...");
-    window.location.href = "https://accounts.coinbase.com/api/v1";
+    window.location.href = "https://coinbase.com";
   }
 
   return (
