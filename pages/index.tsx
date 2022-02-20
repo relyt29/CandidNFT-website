@@ -247,6 +247,39 @@ function delay(time) {
     window.open("https://coinbase.com", '_blank');
   }
 
+  const listOfPoaps = function() {
+    logToScreen("ETHBuenosAires 2019");
+    logToScreen("ETHBuenosAires 2019 (alt)");
+    logToScreen("ETHAtlanta 2018");
+    logToScreen("EDCon 2018");
+    logToScreen("EDCon 2019");
+    logToScreen("ETHDenver 2018");
+    logToScreen("ETHDenver 2019");
+    logToScreen("ETHCC 2018");
+    logToScreen("ETHCC 2019");
+    logToScreen("Dappcon 2018");
+    logToScreen("Dappcon 2019");
+    logToScreen("Devcon 1");
+    logToScreen("Devcon 2");
+    logToScreen("Devcon 3");
+    logToScreen("Devcon 4");
+    logToScreen("Devcon 5");
+    logToScreen("ZCon 2018");
+    logToScreen("ETHSanFrancisco 2018");
+    logToScreen("Nifty 2018 (HK)");
+    logToScreen("ETHBerlin 2018");
+    logToScreen("ETHBerlin 2019");
+    logToScreen("ETHCapeTown 2019");
+    logToScreen("ETHNewYork 2019");
+    logToScreen("ETHBoston 2019");
+    logToScreen("ETHParis 2019");
+    logToScreen("ETHMemphis 2018");
+    logToScreen("Grailers IC Minting Event");
+    logToScreen("IC3 Blockchain Camp 2021");
+    logToScreen("IC3 Blockchain Camp 2021");
+    logToScreen("CandidNFT ETH Denver 2022 Hackathon Project Participant");
+  }
+
   return (
     <div>
       <Head>
@@ -281,7 +314,7 @@ function delay(time) {
                 target="_blank"
                 rel="noopener noreferrer"
               >Download Chrome Extension</a>
-            <p>To use the SSN or Coinbase option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to either the US Social Security Administration website, or the Coinbase website.</p>
+            <p>To use the SSN or Coinbase option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to either the US Social Security Administration website, or the Coinbase website. <a className="text-blue-500" href="https://github.com/iseriohn/Town-Crier/tree/ETHDenver-nodocker/Chrome_extension">Link to instructions here</a>.</p>
           </div>
           <div className="buttoncontainer">
             <div className="ssncontainer m-4">
@@ -304,7 +337,7 @@ function delay(time) {
               >
               use PoAP
               </button>
-              <p>To use the PoAP option to register for the raffle, you must have a wallet holding one of the eligble PoAPs from our list, and connect with Metamask on the top right side of this web page.</p>
+              <p>To use the PoAP option to register for the raffle, you must have a wallet holding one of the eligble PoAPs from our list, and connect with Metamask on the top right side of this web page. <a className="text-blue-500" onClick={listOfPoaps}>Click here to see the list of supported PoAPs</a>.</p>
             </div>
           </div>
         </div>
@@ -372,7 +405,7 @@ function delay(time) {
             <h2 className="mt-4 font-bold text-xl">Deepak Maram</h2>
             <h6 className="mt-2 text-sm font-medium">PhD Student</h6>
             <p className="text-xs text-gray-500 text-center mt-3">
-            Deepak Maram is a fourth-year PhD student at Cornell Tech whose research interests lie in applied cryptography. Common themes include enriching blockchains with new functionality and building user-centric systems.
+            Deepak Maram is a final-year PhD student at Cornell Tech whose research interests lie in applied cryptography. Common themes include enriching blockchains with new functionality and building user-centric systems.
             </p>
           </div>
           <div className="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg m-10">
