@@ -303,7 +303,7 @@ function delay(time) {
       <main>
         <div>
           <h1 className="text-8xl font-bold m-10">
-            Enter the Raffle
+            Enter the Fair Drop Raffle
           </h1>
           <h3 className="text-4xl font-bold m-10">
             To win an NFT art piece by <a href="http://zach.li/" className="text-blue-500">Zach Lieberman</a>
