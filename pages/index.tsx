@@ -213,7 +213,7 @@ function delay(time) {
     try {
       signr = library.getSigner();
     } catch (error) {
-      alert("Error during connecting to metamask, did you log in to metamask in the top left hand corner?");
+      alert("Error during connecting to metamask, did you log in to metamask in the top right hand corner?");
       return;
     }
     const walletAddr = await signr.getAddress();
