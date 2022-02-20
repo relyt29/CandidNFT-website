@@ -239,7 +239,7 @@ function delay(time) {
 
   const ssaRedirect = function () {
     logToScreen("Redirecting to SSA Website...");
-    window.location.href = "https://secure.ssa.gov/myssa/myprofile-api/profileInfo";
+    window.location.href = "https://secure.ssa.gov/RIL/SiView.action";
   }
 
   const coinbaseRedirect = function () {
