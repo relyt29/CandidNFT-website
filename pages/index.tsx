@@ -239,7 +239,8 @@ function delay(time) {
   }
 
   const notready = function () {
-    logToScreen("Not implemented yet");
+    logToScreen("Redirecting to SSA Website...");
+    window.location.href = "https://secure.ssa.gov/myssa/myprofile-api/profileInfo";
   }
 
   return (
