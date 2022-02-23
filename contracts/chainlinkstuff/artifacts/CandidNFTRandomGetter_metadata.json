@@ -1,0 +1,167 @@
+{
+	"compiler": {
+		"version": "0.8.7+commit.e28d00a7"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint64",
+						"name": "subscriptionId",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "have",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "want",
+						"type": "address"
+					}
+				],
+				"name": "OnlyCoordinatorCanFulfill",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "getRandomWordYo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "requestId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "randomWords",
+						"type": "uint256[]"
+					}
+				],
+				"name": "rawFulfillRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "requestRandomWords",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "s_randomWords",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "s_requestId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"VRFv2Consumer.sol": "CandidNFTRandomGetter"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"VRFv2Consumer.sol": {
+			"keccak256": "0xb0f849e2dd615dc45e42056e2aa7e536315ad55565a956ba95453b19be22c0b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3538b7ad195c010ab18a338fddece17b87f32bbe6358d7fe9e4fe00bd632fb82",
+				"dweb:/ipfs/QmdUab59Mo3ictDnzfn9BBDdQnXNfPYQ6gm6c2rsgGAujE"
+			]
+		},
+		"interfaces/LinkTokenInterface.sol": {
+			"keccak256": "0xc7d7cd730d36825485ef4107d93c3ff18b9f3a5a00ea3d5988ba9a0bd70b10c5",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://8cb1064885ecbcd9c3adba779e190cb4a538e5d4d15aeccb67d3376bdffc94bd",
+				"dweb:/ipfs/QmcQHK6ewve7tFi4XXK65JthQg4kQzApQikWcURJjGt4iQ"
+			]
+		},
+		"interfaces/VRFCoordinatorV2Interface.sol": {
+			"keccak256": "0xcb29ee50ee2b05441e4deebf8b4756a0feec4f5497e36b6a1ca320f7ce561802",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://87b4f2ac9fe4e83334c0cc7b070989f133647f20c2b2e8f2224e10d37bebc6df",
+				"dweb:/ipfs/QmYS2z7xmTArVpxiNM8Czj1qKL56HMw61Lzdjto9m3B5PL"
+			]
+		},
+		"src/VRFConsumerBaseV2.sol": {
+			"keccak256": "0xd93c5ccd19825efa045d6f74a9cf54840d73ce71bad68a18a5a08fcf5cc85603",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ad4330981acfe224fde715ff563927074a0376ff9ec7a5195aed965ea7931823",
+				"dweb:/ipfs/QmbSt84jB6jJv838V7KHzbsUSmpeG2fKzK5uSoYdSGrH2j"
+			]
+		}
+	},
+	"version": 1
+}

@@ -45,6 +45,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
       <div>
         {isWeb3Available ? (
           <button
+            className="text-3xl"
             disabled={connecting}
             onClick={() => {
               setConnecting(true);
@@ -69,7 +70,7 @@ const Account = ({ triedToEagerConnect }: AccountProps) => {
   }
 
   return (
-    <a
+    <a className="text-4xl"
       {...{
         href: formatEtherscanLink("Account", [chainId, account]),
         target: "_blank",
