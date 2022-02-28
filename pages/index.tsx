@@ -303,65 +303,37 @@ function delay(time) {
       <main>
         <div>
           <h1 className="text-8xl font-bold m-10">
-            Enter the Fair Drop Raffle
+            The Fair Drop Raffle Has Ended!
           </h1>
           <h3 className="text-4xl font-bold m-10">
-            To win an NFT art piece by <a href="http://zach.li/" className="text-blue-500">Zach Lieberman</a>
+            <a href="https://etherscan.io/address/0x060d235dd8c5fc25893f9aaebcf7bf877abc58e9" className="text-blue-500">0x060d...58e9</a> You win an NFT art piece by <a href="http://zach.li/" className="text-blue-500">Zach Lieberman</a>!
           </h3>
-          <div>
-              <a
-                href="/download/CandidNFT-ChromeExtension.zip"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Download Chrome Extension</a>
-            <p>To use the SSN or Coinbase option to register for the raffle, you must download our chrome (sorry only chrome supported) extension, and prove the ability to log in to either the US Social Security Administration website, or the Coinbase website. <a className="text-blue-500" href="https://github.com/iseriohn/Town-Crier/tree/ETHDenver-nodocker/Chrome_extension">Link to instructions here</a>.</p>
+          <div className="bg-black mr-48 ml-48 p-2 rounded-md">
+            <h3 className="text-2xl font-bold pb-1">
+            Our Demo:
+            </h3>
+            <p>
+              This raffle is a demo of using the technology developed by researchers from Cornell, <a className="text-blue-500" href="https://eprint.iacr.org/2020/934.pdf">CANDID</a> and <a className="text-blue-500" href="https://eprint.iacr.org/2016/168.pdf">Town Crier</a> in particular, to establish privacy-preserving unique identities on blockchain and prevent scalping bots in NFT drops.
+            </p>
+            <h3 className="text-2xl font-bold pb-1">
+            The problem:
+            </h3>
+            <p>
+              Today, profit-seekers are able to use bots to buy up large amounts of NFTs at drops and then resell them at higher prices—much as scalpers do in conventional markets, e.g., the <a className="text-blue-500" href="https://markets.businessinsider.com/news/currencies/time-magazine-nft-crypto-ethereum-scalper-bots-bitcoin-timepiece-fees-2021-09">Time Magazine's NFT launch</a>. This practice is disruptive to the NFT market, as it creates a sense of unfairness. Among other things, it has raised concerns with artists who wish their NFTs to go to collectors interested in their art, rather than bot creators.
+            </p>
+            <h3 className="text-2xl font-bold pb-1">
+              Our solution:
+            </h3>
+            <p>
+              We utilized the decentralized identity system called CanDID to help enforce a one-NFT-per-person drop policy by establishing privacy-preserving unique identities based on data from trustworthy websites such as the Social Security Administration (SSA). Many other user characteristics can be proven using CanDID, e.g., eligibility conditions such as adult-only-NFT (or) country-only-NFT.
+            </p>
+            <p className="pb-1">
+              For this demo, we built a tool based on Town Crier to scrape name from the SSA or Coinbase website, or alternatively the ownership list of Proof of Attendance Protocol, and use the information to deduplicate identities inside Intel SGX, a trusted execution environment, to guarantee integrity and protect users' privacy.Check out our <a className="text-blue-500" href="https://youtu.be/Y-M6G5656PU">video demo</a>.
+            </p>
+            <p>
+              We won bounties from the generous Chainlink and Pocket Network sponsors at ETH Denver 2022!
+            </p>
           </div>
-          <div className="buttoncontainer">
-            <div className="ssncontainer m-4">
-              <button onClick={ssaRedirect}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-              >
-              use SSN
-              </button>
-            </div>
-            <div className="coinbasecontainer m-4">
-              <button onClick={coinbaseRedirect}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-4"
-              >
-              use Coinbase
-              </button>
-            </div>
-            <div className="poapcontainer m-4">
-              <button onClick={getWalletInfo}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold text-4xl py-2 px-4 border border-blue-700 rounded m-1"
-              >
-              use PoAP
-              </button>
-              <p>To use the PoAP option to register for the raffle, you must have a wallet holding one of the eligble PoAPs from our list, and connect with Metamask on the top right side of this web page. <a className="text-blue-500" onClick={listOfPoaps}>Click here to see the list of supported PoAPs</a>.</p>
-            </div>
-          </div>
-        </div>
-        <div className="textareacontainer m-8 object-fill">
-          <textarea readOnly className="
-              form-control
-              block
-              w-full
-              px-3
-              py-1.5
-              text-base
-              font-mono
-              text-lime-500
-              bg-black bg-clip-padding
-              border border-solid border-gray-300
-              rounded
-              placeholder-lime-500
-              object-fill
-              h-96
-              m-0
-              focus:text-lime-500 focus:bg-black focus:border-blue-600 focus:outline-none"
-            id="logTextArea"
-            placeholder="Raffle enter log"
-          ></textarea>
         </div>
         <div className="br divide-y-4 mb-20"><br/></div>
         <div className="justify-center"><h1 className="font-bold text-4xl">Team</h1></div>
