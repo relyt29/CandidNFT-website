@@ -319,7 +319,7 @@ function delay(time) {
             The problem:
             </h3>
             <p>
-              Today, profit-seekers are able to use bots to buy up large amounts of NFTs at drops and then resell them at higher prices—much as scalpers do in conventional markets, e.g., the <a className="text-blue-500" href="https://markets.businessinsider.com/news/currencies/time-magazine-nft-crypto-ethereum-scalper-bots-bitcoin-timepiece-fees-2021-09">Time Magazine's NFT launch</a>. This practice is disruptive to the NFT market, as it creates a sense of unfairness. Among other things, it has raised concerns with artists who wish their NFTs to go to collectors interested in their art, rather than bot creators.
+              Today, profit-seekers are able to use bots to buy up large amounts of NFTs at drops and then resell them at higher prices—much as scalpers do in conventional markets, e.g., the <a className="text-blue-500" href="https://markets.businessinsider.com/news/currencies/time-magazine-nft-crypto-ethereum-scalper-bots-bitcoin-timepiece-fees-2021-09">Time Magazine&#39;s NFT launch</a>. This practice is disruptive to the NFT market, as it creates a sense of unfairness. Among other things, it has raised concerns with artists who wish their NFTs to go to collectors interested in their art, rather than bot creators.
             </p>
             <h3 className="text-2xl font-bold pb-1">
               Our solution:
@@ -328,7 +328,7 @@ function delay(time) {
               We utilized the decentralized identity system called CanDID to help enforce a one-NFT-per-person drop policy by establishing privacy-preserving unique identities based on data from trustworthy websites such as the Social Security Administration (SSA). Many other user characteristics can be proven using CanDID, e.g., eligibility conditions such as adult-only-NFT (or) country-only-NFT.
             </p>
             <p className="pb-1">
-              For this demo, we built a tool based on Town Crier to scrape name from the SSA or Coinbase website, or alternatively the ownership list of Proof of Attendance Protocol, and use the information to deduplicate identities inside Intel SGX, a trusted execution environment, to guarantee integrity and protect users' privacy.Check out our <a className="text-blue-500" href="https://youtu.be/Y-M6G5656PU">video demo</a>.
+              For this demo, we built a tool based on Town Crier to scrape name from the SSA or Coinbase website, or alternatively the ownership list of Proof of Attendance Protocol, and use the information to deduplicate identities inside Intel SGX, a trusted execution environment, to guarantee integrity and protect users&#39; privacy. Check out our <a className="text-blue-500" href="https://youtu.be/Y-M6G5656PU">video demo</a>.
             </p>
             <p>
               We won bounties from the generous Chainlink and Pocket Network sponsors at ETH Denver 2022!
